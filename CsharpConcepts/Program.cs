@@ -1,4 +1,5 @@
-﻿using CsharpConcepts.Generics;
+﻿using CsharpConcepts.ExtensionMethod;
+using CsharpConcepts.Generics;
 using CsharpConcepts.VirtualAndOverride;
 using System;
 
@@ -33,33 +34,46 @@ namespace CsharpConcepts
             /*
              * Generics example
             */
-            ComparisonGenericClass<int> comparison = new ComparisonGenericClass<int>();
-            int value1 = 4, value2 = 19;
-            comparison.ShowWelcomeMessage();
-            Console.WriteLine($"Are the values {value1.ToString()} and {value2.ToString()} equals? {comparison.CompareValues(value1, value2)} \n");
+            //ComparisonGenericClass<int> comparison = new ComparisonGenericClass<int>();
+            //int value1 = 4, value2 = 19;
+            //comparison.ShowWelcomeMessage();
+            //Console.WriteLine($"Are the values {value1.ToString()} and {value2.ToString()} equals? {comparison.CompareValues(value1, value2)} \n");
 
-            Console.WriteLine("This are the initial value of value1 {0}", value1.ToString());
-            Console.WriteLine("This are the initial value of value2 {0}\n", value2.ToString());
+            //Console.WriteLine("This are the initial value of value1 {0}", value1.ToString());
+            //Console.WriteLine("This are the initial value of value2 {0}\n", value2.ToString());
 
-            comparison.Swap(ref value1, ref value2);
+            //comparison.Swap(ref value1, ref value2);
 
-            Console.WriteLine("This are the final value of value1 after swap {0}", value1.ToString());
-            Console.WriteLine("This are the final value of value2 after swap {0}\n", value2.ToString());
+            //Console.WriteLine("This are the final value of value1 after swap {0}", value1.ToString());
+            //Console.WriteLine("This are the final value of value2 after swap {0}\n", value2.ToString());
 
 
-            ComparisonGenericClass<string> comparison2 = new ComparisonGenericClass<string>();
-            string value3 = "Hola", value4 = "hola";
-            comparison2.ShowWelcomeMessage();
-            Console.WriteLine($"Are the values {value3.ToString()} and {value4.ToString()} equals? {comparison2.CompareValues(value3, value4)}\n");
+            //ComparisonGenericClass<string> comparison2 = new ComparisonGenericClass<string>();
+            //string value3 = "Hola", value4 = "hola";
+            //comparison2.ShowWelcomeMessage();
+            //Console.WriteLine($"Are the values {value3.ToString()} and {value4.ToString()} equals? {comparison2.CompareValues(value3, value4)}\n");
 
-            Console.WriteLine("This are the initial value of value3 {0}", value3.ToString());
-            Console.WriteLine("This are the initial value of value4 {0}\n", value4.ToString());
+            //Console.WriteLine("This are the initial value of value3 {0}", value3.ToString());
+            //Console.WriteLine("This are the initial value of value4 {0}\n", value4.ToString());
 
-            comparison2.Swap(ref value3, ref value4);
+            //comparison2.Swap(ref value3, ref value4);
 
-            Console.WriteLine("This are the final value of value3 after swap {0}", value3.ToString());
-            Console.WriteLine("This are the final value of value4 after swap {0}\n", value4.ToString());
+            //Console.WriteLine("This are the final value of value3 after swap {0}", value3.ToString());
+            //Console.WriteLine("This are the final value of value4 after swap {0}\n", value4.ToString());
 
+
+            /*
+             * Extension Method example
+            */
+            int number = 5;
+            double numberPowered = number.MyOwnPower(3);
+            //Method invoked like other static methods
+            //double numberPowered = ExtensionMethods.MyOwnPower(number, 3);
+            Console.WriteLine(numberPowered);
+
+            string word = "Aeropuertos";
+            Console.WriteLine($"This is your word {word}");
+            Console.WriteLine($"This is your word in F language {word.CastWord2FLanguage()}");
         }
     }
     

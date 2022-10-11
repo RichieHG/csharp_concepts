@@ -55,3 +55,48 @@ This concept allow us to improve our code reusability, because it introduce a ki
 * The most common use of generics is to create collection classes.
 
 Typically, you create generic classes by starting with an existing concrete class, and changing types into type parameters one at a time until you reach the optimal balance of generalization and usability.
+
+## Extension Methods
+Extension methods enable you to "add" methods to existing types without modifying the original type. This kind of methods are static methods, but they're called as if they were instance methods on the extended type.
+
+Their first parameter specifies which type the method operates on. The parameter is preceded by the this modifier. Extension methods are only in scope when you explicitly import the namespace into your source code with a using directive. 
+
+These methods can be invoked like other static methods
+
+### To define and call the extension method
+1. Define a static class to contain the extension method.
+2. Implement the extension method as a static method with at least the same visibility as the containing class.
+3. The first parameter of the method specifies the type that the method operates on; it must be preceded with the **this** modifier.
+4. In the calling code, add a using directive to specify the namespace that contains the extension method class.
+5. Call the methods as if they were instance methods on the type.
+
+Note that the first parameter is not specified by calling code because it represents the type on which the operator is being applied, and the compiler already knows the type of your object. You only have to provide arguments for parameters 2 through n.
+
+```
+public static double MyOwnPower(this int number, int power) 
+{
+    double temp = 1;
+    for(int i = 1; i<=power; i++)
+    {
+        temp = temp * number;
+    }
+    return temp;
+}
+```
+
+```
+private static void Main(string[] args)
+{
+    /*
+    * Extension Method example
+    */
+    int number = 5;
+    double numberPowered = number.MyOwnPower(3);
+
+    //Method invoked like other static methods
+    //double numberPowered = ExtensionMethods.MyOwnPower(number, 3);
+    
+    Console.WriteLine(numberPowered);
+
+}
+```
