@@ -22,6 +22,9 @@ namespace CsharpConcepts
             Console.WriteLine("Subway trip info: Route {0} | Cost: {1:F2}", subwayTrip.Route, subwayTrip.Charge());
             Console.WriteLine("Taxi trip info: Route {0} | Cost: {1:F2}", taxiTrip.Route, taxiTrip.Charge());
 
+            busTrip.GetCost();
+            taxiTrip.GetCost();
+            subwayTrip.GetCost();
         }
     }
     

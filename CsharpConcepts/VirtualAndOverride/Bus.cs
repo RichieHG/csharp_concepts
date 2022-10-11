@@ -18,5 +18,10 @@ namespace CsharpConcepts.VirtualAndOverride
         {
             return Cost + (CostPerKm * TripDistanceInKm) ;
         }
+
+        public override void GetCost()
+        {
+            Console.WriteLine("The cost of Bus is {0}", Cost);
+        }
     }
 }

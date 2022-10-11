@@ -4,7 +4,7 @@ using System.Text;
 
 namespace CsharpConcepts.VirtualAndOverride
 {
-    public class PublicTransport
+    public abstract class PublicTransport
     {
         public double Cost { get; set; }
         public virtual string Route { get; set; }
@@ -29,5 +29,7 @@ namespace CsharpConcepts.VirtualAndOverride
         {
             return Cost;
         }
+
+        public abstract void GetCost();
     }
 }
