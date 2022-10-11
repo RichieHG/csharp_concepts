@@ -67,6 +67,8 @@ namespace CsharpConcepts
             */
             int number = 5;
             double numberPowered = number.MyOwnPower(3);
+            //Method invoked like other static methods
+            //double numberPowered = ExtensionMethods.MyOwnPower(number, 3);
             Console.WriteLine(numberPowered);
 
             string word = "Aeropuertos";
