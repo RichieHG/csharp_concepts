@@ -14,5 +14,10 @@ namespace CsharpConcepts.VirtualAndOverride
         public Subway(double cost) : base(cost,0.0,0.0,0.0,0.0)
         {
         }
+
+        public override void GetCost()
+        {
+            Console.WriteLine("The cost of Subway is {0}", Cost);
+        }
     }
 }

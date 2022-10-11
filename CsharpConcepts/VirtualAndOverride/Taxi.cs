@@ -36,5 +36,10 @@ namespace CsharpConcepts.VirtualAndOverride
         {
             return Cost + (CostPerKm * TripDistanceInKm) + (CostPerMinute * TripTimeInMinutes);
         }
+
+        public override void GetCost()
+        {
+            Console.WriteLine("The cost of Taxi is {0}", Cost);
+        }
     }
 }
