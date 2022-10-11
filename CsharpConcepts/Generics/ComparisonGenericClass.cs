@@ -16,5 +16,13 @@ namespace CsharpConcepts.Generics
         {
             Console.WriteLine("Hi, this is a class to compare this type of data: {0}", typeof(T).ToString());
         }
+
+        public void Swap(ref T lhs, ref T rhs)
+        {
+            T temp;
+            temp = lhs;
+            lhs = rhs;
+            rhs = temp;
+        }
     }
 }

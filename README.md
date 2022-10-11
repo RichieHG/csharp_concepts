@@ -3,7 +3,7 @@ Repository to practice C# Concepts
 
 These are the concepts that we practice here:
 - [Virtual](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/virtual) and [Override](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/override) ([Abstract](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/abstract) class) | [Notes](#virtual-override-and-abstract-modifiers)
-- Generics (Methods and Classes)
+- [Generics](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/generics) ([Methods](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/generic-methods) and [Classes](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/generic-classes)) | [Notes](#generics)
 - Extension Method
 - Anonymous Method
 - Anonymous Type
@@ -47,3 +47,11 @@ Abstract methods have the following features:
 
 Because an abstract method declaration provides no actual implementation, there is no method body; the method declaration simply ends with a semicolon and there are no curly braces ({ }) following the signature.a
 The implementation is provided by a method override, which is a member of a non-abstract class.
+
+## Generics
+This concept allow us to improve our code reusability, because it introduce a kind of non-typed data into our code.
+
+* Use generic types to maximize code reuse, type safety, and performance.
+* The most common use of generics is to create collection classes.
+
+Typically, you create generic classes by starting with an existing concrete class, and changing types into type parameters one at a time until you reach the optimal balance of generalization and usability.
