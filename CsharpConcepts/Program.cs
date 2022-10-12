@@ -1,8 +1,11 @@
-﻿using CsharpConcepts.Delegates;
+﻿using CsharpConcepts.AnonymousTypes;
+using CsharpConcepts.Delegates;
 using CsharpConcepts.ExtensionMethod;
 using CsharpConcepts.Generics;
 using CsharpConcepts.VirtualAndOverride;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using static CsharpConcepts.Delegates.DelegatesExample;
 
 namespace CsharpConcepts
@@ -89,50 +92,124 @@ namespace CsharpConcepts
             */
             #region Delegates
 
-            DelegatesExample delegatesObj = new DelegatesExample();
+            //DelegatesExample delegatesObj = new DelegatesExample();
 
-            //Classic creation
-            NotifyDelegate notifyDelegateClassic = new NotifyDelegate(delegatesObj.Notify);
-            notifyDelegateClassic("Richie");
+            ////Classic creation
+            //NotifyDelegate notifyDelegateClassic = new NotifyDelegate(delegatesObj.Notify);
+            //notifyDelegateClassic("Richie");
 
-            //New way of creation
-            NotifyDelegate notifyDelegateNewWay = delegatesObj.Notify;
-            notifyDelegateNewWay("Nefta");
+            ////New way of creation
+            //NotifyDelegate notifyDelegateNewWay = delegatesObj.Notify;
+            //notifyDelegateNewWay("Nefta");
 
-            //Anonymous Method
-            NotifyDelegate notifyDelegateAnonymous = delegate (string message)
+            ////Anonymous Method
+            //NotifyDelegate notifyDelegateAnonymous = delegate (string message)
+            //{ 
+            //    Console.WriteLine($"Mensaje recibido: {message} \n");
+            //};
+            //notifyDelegateAnonymous("Hola, ¿cómo estás?");
+
+            ////Anonymous Method with Lambda
+            //NotifyDelegate notifyDelegateLambda = message => 
+            //{ 
+            //    Console.WriteLine($"Received message: {message} \n"); 
+            //};
+            //notifyDelegateLambda("Hi, how are you?");
+
+            ////Callback
+            //NotifyDelegate notifyDelegateCallback = delegatesObj.Notify;
+            //NotifyWithCallback("Pao", notifyDelegateCallback);
+
+            ////Multicast 
+            //NotifyDelegate notifyDelegateEng, notifyDelegateSpa, notifyDelegateMultiCast, notifyDelegateMultiCastMinusEng;
+
+            //notifyDelegateEng = delegatesObj.Notify;
+            //notifyDelegateSpa = delegatesObj.NotifyESP;
+            //notifyDelegateMultiCast = notifyDelegateEng + notifyDelegateSpa;
+            //notifyDelegateMultiCastMinusEng = notifyDelegateMultiCast - notifyDelegateEng;
+
+            //Console.WriteLine("Invoking delegate notifyDelegateEng:");
+            //notifyDelegateEng("Pao");
+            //Console.WriteLine("Invoking delegate notifyDelegateSpa:");
+            //notifyDelegateSpa("Rubi");
+            //Console.WriteLine("Invoking delegate notifyDelegateMultiCast:");
+            //notifyDelegateMultiCast("Carlos");
+            //Console.WriteLine("Invoking delegate notifyDelegateMultiCastMinusEng:");
+            //notifyDelegateMultiCastMinusEng("Dalia");
+            #endregion
+
+            /*
+             * Anonymous Types example 
+            */
+            #region Anonymous Types
+
+            // Anonymous Array 
+            var beers = new[]
             { 
-                Console.WriteLine($"Mensaje recibido: {message} \n");
+                new { Id = 1, Name = "Bohemia", TypeOfBeer = "Dark" },
+                new { Id = 2, Name = "Corona", TypeOfBeer = "Light" },
+                new { Id = 3, Name = "Guinness", TypeOfBeer = "Dark" }
             };
-            notifyDelegateAnonymous("Hola, ¿cómo estás?");
 
-            //Anonymous Method with Lambda
-            NotifyDelegate notifyDelegateLambda = message => 
-            { 
-                Console.WriteLine($"Received message: {message} \n"); 
+            var bohemia = beers[0] with { TypeOfBeer = "Ligth" };  
+
+            Console.WriteLine("These are our available beers\n");
+            foreach (var beer in beers)
+            {
+                Console.WriteLine($"Name: {beer.Name} | TypeOfBeer: {beer.TypeOfBeer}");
+            }
+
+
+            beers[0] = bohemia;
+            Console.WriteLine("\n These are our new available beers\n");
+            foreach (var beer in beers)
+            {
+                Console.WriteLine($"Name: {beer.Name} | TypeOfBeer: {beer.TypeOfBeer}");
+            }
+            
+            List<Freestyler> freestylers = new List<Freestyler>()
+            {
+                new Freestyler()
+                {
+                    Id = 1, AKA = "Aczino", BoardPosition = 1, League = "MEX", Points = 25
+                },
+                new Freestyler()
+                {
+                    Id = 2, AKA = "Larrix", BoardPosition = 1, League = "ARG", Points = 20
+                },
+                new Freestyler()
+                {
+                    Id = 3, AKA = "RC", BoardPosition = 2, League = "MEX", Points = 18
+                },
+                new Freestyler()
+                {
+                    Id = 4, AKA = "Dtoke", BoardPosition = 2, League = "ARG", Points = 18
+                },
+                new Freestyler()
+                {
+                    Id = 5, AKA = "Chuty", BoardPosition = 1, League = "SPA", Points = 23
+                },
+                new Freestyler()
+                {
+                    Id = 6, AKA = "Sara Socas", BoardPosition = 2, League = "SPA", Points = 21
+                }
             };
-            notifyDelegateLambda("Hi, how are you?");
 
-            //Callback
-            NotifyDelegate notifyDelegateCallback = delegatesObj.Notify;
-            NotifyWithCallback("Pao", notifyDelegateCallback);
+            var mexicanFreestylers = freestylers.Where(x => x.League == "MEX")
+                                    .Select(z => new { Name = z.AKA, Position = z.BoardPosition }).OrderBy(x => x.Position);
 
-            //Multicast 
-            NotifyDelegate notifyDelegateEng, notifyDelegateSpa, notifyDelegateMultiCast, notifyDelegateMultiCastMinusEng;
+            Console.WriteLine("\nThese are all Freestylers\n");
+            foreach (Freestyler freestyler in freestylers)
+            {
+                Console.WriteLine($"AKA: {freestyler.AKA} | BoardPosition: {freestyler.BoardPosition} | League: {freestyler.League} | Points: {freestyler.Points}");
+            }
 
-            notifyDelegateEng = delegatesObj.Notify;
-            notifyDelegateSpa = delegatesObj.NotifyESP;
-            notifyDelegateMultiCast = notifyDelegateEng + notifyDelegateSpa;
-            notifyDelegateMultiCastMinusEng = notifyDelegateMultiCast - notifyDelegateEng;
+            Console.WriteLine("\nThese are Mexican Freestylers\n");
+            foreach (var freestyler in mexicanFreestylers)
+            {
+                Console.WriteLine($"Name: {freestyler.Name} | Position: {freestyler.Position}");
+            }
 
-            Console.WriteLine("Invoking delegate notifyDelegateEng:");
-            notifyDelegateEng("Pao");
-            Console.WriteLine("Invoking delegate notifyDelegateSpa:");
-            notifyDelegateSpa("Rubi");
-            Console.WriteLine("Invoking delegate notifyDelegateMultiCast:");
-            notifyDelegateMultiCast("Carlos");
-            Console.WriteLine("Invoking delegate notifyDelegateMultiCastMinusEng:");
-            notifyDelegateMultiCastMinusEng("Dalia");
             #endregion
         }
     }
