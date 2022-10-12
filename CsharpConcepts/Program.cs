@@ -1,7 +1,9 @@
-﻿using CsharpConcepts.ExtensionMethod;
+﻿using CsharpConcepts.Delegates;
+using CsharpConcepts.ExtensionMethod;
 using CsharpConcepts.Generics;
 using CsharpConcepts.VirtualAndOverride;
 using System;
+using static CsharpConcepts.Delegates.DelegatesExample;
 
 namespace CsharpConcepts
 {
@@ -12,6 +14,8 @@ namespace CsharpConcepts
             /*
              * Virtual, Abstract and Override example
             */
+            #region Virtual, Abstract and Override
+
             //double taxiCost = 12.5, busCost = 10.0, subwayCost = 5.0;
             //double busCostPerKm = 2.7, taxiCostPerKm = 1.85, taxiCostPerMinute = 0.75;
             //double tripDistanceInKm = 8.6, tripTimeInMinutes = 30;
@@ -30,10 +34,13 @@ namespace CsharpConcepts
             //busTrip.GetCost();
             //taxiTrip.GetCost();
             //subwayTrip.GetCost();
+            #endregion
 
             /*
              * Generics example
             */
+            #region Generics 
+
             //ComparisonGenericClass<int> comparison = new ComparisonGenericClass<int>();
             //int value1 = 4, value2 = 19;
             //comparison.ShowWelcomeMessage();
@@ -65,15 +72,68 @@ namespace CsharpConcepts
             /*
              * Extension Method example
             */
-            int number = 5;
-            double numberPowered = number.MyOwnPower(3);
-            //Method invoked like other static methods
-            //double numberPowered = ExtensionMethods.MyOwnPower(number, 3);
-            Console.WriteLine(numberPowered);
+            //int number = 5;
+            //double numberPowered = number.MyOwnPower(3);
+            ////Method invoked like other static methods
+            ////double numberPowered = ExtensionMethods.MyOwnPower(number, 3);
+            //Console.WriteLine(numberPowered);
 
-            string word = "Aeropuertos";
-            Console.WriteLine($"This is your word {word}");
-            Console.WriteLine($"This is your word in F language {word.CastWord2FLanguage()}");
+            //string word = "Aeropuertos";
+            //Console.WriteLine($"This is your word {word}");
+            //Console.WriteLine($"This is your word in F language {word.CastWord2FLanguage()}");
+            #endregion
+
+
+            /*
+             * Delegates example 
+            */
+            #region Delegates
+
+            DelegatesExample delegatesObj = new DelegatesExample();
+
+            //Classic creation
+            NotifyDelegate notifyDelegateClassic = new NotifyDelegate(delegatesObj.Notify);
+            notifyDelegateClassic("Richie");
+
+            //New way of creation
+            NotifyDelegate notifyDelegateNewWay = delegatesObj.Notify;
+            notifyDelegateNewWay("Nefta");
+
+            //Anonymous Method
+            NotifyDelegate notifyDelegateAnonymous = delegate (string message)
+            { 
+                Console.WriteLine($"Mensaje recibido: {message} \n");
+            };
+            notifyDelegateAnonymous("Hola, ¿cómo estás?");
+
+            //Anonymous Method with Lambda
+            NotifyDelegate notifyDelegateLambda = message => 
+            { 
+                Console.WriteLine($"Received message: {message} \n"); 
+            };
+            notifyDelegateLambda("Hi, how are you?");
+
+            //Callback
+            NotifyDelegate notifyDelegateCallback = delegatesObj.Notify;
+            NotifyWithCallback("Pao", notifyDelegateCallback);
+
+            //Multicast 
+            NotifyDelegate notifyDelegateEng, notifyDelegateSpa, notifyDelegateMultiCast, notifyDelegateMultiCastMinusEng;
+
+            notifyDelegateEng = delegatesObj.Notify;
+            notifyDelegateSpa = delegatesObj.NotifyESP;
+            notifyDelegateMultiCast = notifyDelegateEng + notifyDelegateSpa;
+            notifyDelegateMultiCastMinusEng = notifyDelegateMultiCast - notifyDelegateEng;
+
+            Console.WriteLine("Invoking delegate notifyDelegateEng:");
+            notifyDelegateEng("Pao");
+            Console.WriteLine("Invoking delegate notifyDelegateSpa:");
+            notifyDelegateSpa("Rubi");
+            Console.WriteLine("Invoking delegate notifyDelegateMultiCast:");
+            notifyDelegateMultiCast("Carlos");
+            Console.WriteLine("Invoking delegate notifyDelegateMultiCastMinusEng:");
+            notifyDelegateMultiCastMinusEng("Dalia");
+            #endregion
         }
     }
     
