@@ -7,7 +7,7 @@ These are the concepts that we practice here:
 - Extension Methods | [Notes](#extension-methods)
 - Anonymous Method | [Notes](#delegates)
 - Anonymous Type | [Notes](#anonymous-types)
-- Reflection
+- Reflection | [Notes](#reflection)
 
 ## Virtual Override and Abstract modifiers
 ### [Virtual](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/virtual)
@@ -169,3 +169,19 @@ It can contains one or more public read-only properties (it means you cannot cha
 * If you don't specify member names in the anonymous type, the compiler gives the anonymous type members the same name as the property being used to initialize them. You provide a name for a property that's being initialized with an expression
 * Anonymous types are class types that derive directly from object, and that cannot be cast to any type except object.
 * Anonymous types support non-destructive mutation in the form of [with expressions](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/with-expression). This enables you to create a new instance of an anonymous type where one or more properties have new values
+
+## [Reflection](https://learn.microsoft.com/en-us/dotnet/framework/reflection-and-codedom/reflection)
+Reflection provides objects (of type Type) that encapsulate assemblies, modules, and types. You can use reflection to dynamically create an instance of a type, bind the type to an existing object, or get the type from an existing object and invoke its methods or access its fields and properties. If you are using attributes in your code, reflection enables you to access them.
+
+In other words, Reflection allows you to obtain information about loaded assemblies and the types defined within them, such as classes, interfaces, and value types (that is, structures and enumerations).
+
+You can also use reflection to create type instances at run time, and to invoke and access them.
+
+Reflection is useful in the following situations:
+
+* When you have to access attributes in your program's metadata.
+* For examining and instantiating types in an assembly.
+* For building new types at run time.
+* For performing late binding, accessing methods on types created at run time.
+
+[Here](https://youtu.be/u3R16Kbex30) we can find another example using Reflection.

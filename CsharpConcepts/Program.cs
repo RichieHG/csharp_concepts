@@ -243,7 +243,7 @@ namespace CsharpConcepts
             //IReflection reflection = person;
             IReflection reflection = professional;
 
-            System.Reflection.PropertyInfo[] properties = reflection.GetType().GetProperties();
+            PropertyInfo[] properties = reflection.GetType().GetProperties();
 
             Console.WriteLine($"\nThis is the type of your object {reflection.GetType()}");
             foreach(var property in properties)
