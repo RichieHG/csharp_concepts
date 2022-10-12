@@ -6,7 +6,7 @@ These are the concepts that we practice here:
 - Generics (Methods and Classes) | [Notes](#generics-methods-and-classes)
 - Extension Methods | [Notes](#extension-methods)
 - Anonymous Method | [Notes](#delegates)
-- Anonymous Type
+- Anonymous Type | [Notes](#anonymous-types)
 - Reflection
 
 ## Virtual Override and Abstract modifiers
@@ -156,3 +156,16 @@ Use an interface in the following circumstances:
 * A class only needs one implementation of the method.
 * The class using the interface will want to cast that interface to other interface or class types.
 * The method being implemented is linked to the type or identity of the class: for example, comparison methods.
+
+## [Anonymous Types](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/anonymous-types)
+This kind of types provides a way to encapsulate a set of read-only properties without the necesity to define a explicit type/class.
+
+To create an anonymous type, you have to use *new* operator together with an object initializer.
+It can contains one or more public read-only properties (it means you cannot change the values of them) and the expression that is used to initialize a property cannot be null, an anonymous function, or a pointer type.
+
+* Typically, when you use an anonymous type to initialize a variable, you declare the variable as an implicitly typed local variable by using var.
+* Anonymous types typically are used in the *select* clause of a query expression to return a subset of the properties from each object in the source sequence.
+* The most common scenario is to initialize an anonymous type with properties from another type.
+* If you don't specify member names in the anonymous type, the compiler gives the anonymous type members the same name as the property being used to initialize them. You provide a name for a property that's being initialized with an expression
+* Anonymous types are class types that derive directly from object, and that cannot be cast to any type except object.
+* Anonymous types support non-destructive mutation in the form of [with expressions](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/with-expression). This enables you to create a new instance of an anonymous type where one or more properties have new values

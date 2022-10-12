@@ -196,7 +196,7 @@ namespace CsharpConcepts
             };
 
             var mexicanFreestylers = freestylers.Where(x => x.League == "MEX")
-                                    .Select(z => new { Name = z.AKA, Position = z.BoardPosition }).OrderBy(x => x.Position);
+                                    .Select(z => new { Name = z.AKA, z.BoardPosition }).OrderBy(x => x.BoardPosition);
 
             Console.WriteLine("\nThese are all Freestylers\n");
             foreach (Freestyler freestyler in freestylers)
@@ -207,7 +207,7 @@ namespace CsharpConcepts
             Console.WriteLine("\nThese are Mexican Freestylers\n");
             foreach (var freestyler in mexicanFreestylers)
             {
-                Console.WriteLine($"Name: {freestyler.Name} | Position: {freestyler.Position}");
+                Console.WriteLine($"Name: {freestyler.Name} | BoardPosition: {freestyler.BoardPosition}");
             }
 
             #endregion
