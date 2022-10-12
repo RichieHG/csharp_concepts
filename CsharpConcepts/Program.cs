@@ -2,10 +2,12 @@
 using CsharpConcepts.Delegates;
 using CsharpConcepts.ExtensionMethod;
 using CsharpConcepts.Generics;
+using CsharpConcepts.Reflection;
 using CsharpConcepts.VirtualAndOverride;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using static CsharpConcepts.Delegates.DelegatesExample;
 
 namespace CsharpConcepts
@@ -144,70 +146,109 @@ namespace CsharpConcepts
             #region Anonymous Types
 
             // Anonymous Array 
-            var beers = new[]
-            { 
-                new { Id = 1, Name = "Bohemia", TypeOfBeer = "Dark" },
-                new { Id = 2, Name = "Corona", TypeOfBeer = "Light" },
-                new { Id = 3, Name = "Guinness", TypeOfBeer = "Dark" }
+            //var beers = new[]
+            //{ 
+            //    new { Id = 1, Name = "Bohemia", TypeOfBeer = "Dark" },
+            //    new { Id = 2, Name = "Corona", TypeOfBeer = "Light" },
+            //    new { Id = 3, Name = "Guinness", TypeOfBeer = "Dark" }
+            //};
+
+            //var bohemia = beers[0] with { TypeOfBeer = "Ligth" };  
+
+            //Console.WriteLine("These are our available beers\n");
+            //foreach (var beer in beers)
+            //{
+            //    Console.WriteLine($"Name: {beer.Name} | TypeOfBeer: {beer.TypeOfBeer}");
+            //}
+
+
+            //beers[0] = bohemia;
+            //Console.WriteLine("\n These are our new available beers\n");
+            //foreach (var beer in beers)
+            //{
+            //    Console.WriteLine($"Name: {beer.Name} | TypeOfBeer: {beer.TypeOfBeer}");
+            //}
+
+            //List<Freestyler> freestylers = new List<Freestyler>()
+            //{
+            //    new Freestyler()
+            //    {
+            //        Id = 1, AKA = "Aczino", BoardPosition = 1, League = "MEX", Points = 25
+            //    },
+            //    new Freestyler()
+            //    {
+            //        Id = 2, AKA = "Larrix", BoardPosition = 1, League = "ARG", Points = 20
+            //    },
+            //    new Freestyler()
+            //    {
+            //        Id = 3, AKA = "RC", BoardPosition = 2, League = "MEX", Points = 18
+            //    },
+            //    new Freestyler()
+            //    {
+            //        Id = 4, AKA = "Dtoke", BoardPosition = 2, League = "ARG", Points = 18
+            //    },
+            //    new Freestyler()
+            //    {
+            //        Id = 5, AKA = "Chuty", BoardPosition = 1, League = "SPA", Points = 23
+            //    },
+            //    new Freestyler()
+            //    {
+            //        Id = 6, AKA = "Sara Socas", BoardPosition = 2, League = "SPA", Points = 21
+            //    }
+            //};
+
+            //var mexicanFreestylers = freestylers.Where(x => x.League == "MEX")
+            //                        .Select(z => new { Name = z.AKA, z.BoardPosition }).OrderBy(x => x.BoardPosition);
+
+            //Console.WriteLine("\nThese are all Freestylers\n");
+            //foreach (Freestyler freestyler in freestylers)
+            //{
+            //    Console.WriteLine($"AKA: {freestyler.AKA} | BoardPosition: {freestyler.BoardPosition} | League: {freestyler.League} | Points: {freestyler.Points}");
+            //}
+
+            //Console.WriteLine("\nThese are Mexican Freestylers\n");
+            //foreach (var freestyler in mexicanFreestylers)
+            //{
+            //    Console.WriteLine($"Name: {freestyler.Name} | BoardPosition: {freestyler.BoardPosition}");
+            //}
+
+            #endregion
+
+            /*
+            * Reflection example 
+            */
+            #region Reflection
+
+            // Using GetType to obtain type information:
+            int i = 42;
+            Type type = i.GetType();
+            Console.WriteLine(type);
+
+            // Using Reflection to get information of an Assembly:
+            Assembly info = typeof(int).Assembly;
+            Console.WriteLine(info);
+
+            Person person = new Person()
+            {
+                Name = "Ricardo",
+                Age = 26
             };
 
-            var bohemia = beers[0] with { TypeOfBeer = "Ligth" };  
-
-            Console.WriteLine("These are our available beers\n");
-            foreach (var beer in beers)
+            Professional professional = new Professional()
             {
-                Console.WriteLine($"Name: {beer.Name} | TypeOfBeer: {beer.TypeOfBeer}");
-            }
-
-
-            beers[0] = bohemia;
-            Console.WriteLine("\n These are our new available beers\n");
-            foreach (var beer in beers)
-            {
-                Console.WriteLine($"Name: {beer.Name} | TypeOfBeer: {beer.TypeOfBeer}");
-            }
-            
-            List<Freestyler> freestylers = new List<Freestyler>()
-            {
-                new Freestyler()
-                {
-                    Id = 1, AKA = "Aczino", BoardPosition = 1, League = "MEX", Points = 25
-                },
-                new Freestyler()
-                {
-                    Id = 2, AKA = "Larrix", BoardPosition = 1, League = "ARG", Points = 20
-                },
-                new Freestyler()
-                {
-                    Id = 3, AKA = "RC", BoardPosition = 2, League = "MEX", Points = 18
-                },
-                new Freestyler()
-                {
-                    Id = 4, AKA = "Dtoke", BoardPosition = 2, League = "ARG", Points = 18
-                },
-                new Freestyler()
-                {
-                    Id = 5, AKA = "Chuty", BoardPosition = 1, League = "SPA", Points = 23
-                },
-                new Freestyler()
-                {
-                    Id = 6, AKA = "Sara Socas", BoardPosition = 2, League = "SPA", Points = 21
-                }
+                Name = "Ricardo",
+                Title = "Engineer"
             };
 
-            var mexicanFreestylers = freestylers.Where(x => x.League == "MEX")
-                                    .Select(z => new { Name = z.AKA, z.BoardPosition }).OrderBy(x => x.BoardPosition);
+            //IReflection reflection = person;
+            IReflection reflection = professional;
 
-            Console.WriteLine("\nThese are all Freestylers\n");
-            foreach (Freestyler freestyler in freestylers)
-            {
-                Console.WriteLine($"AKA: {freestyler.AKA} | BoardPosition: {freestyler.BoardPosition} | League: {freestyler.League} | Points: {freestyler.Points}");
-            }
+            PropertyInfo[] properties = reflection.GetType().GetProperties();
 
-            Console.WriteLine("\nThese are Mexican Freestylers\n");
-            foreach (var freestyler in mexicanFreestylers)
+            Console.WriteLine($"\nThis is the type of your object {reflection.GetType()}");
+            foreach(var property in properties)
             {
-                Console.WriteLine($"Name: {freestyler.Name} | BoardPosition: {freestyler.BoardPosition}");
+                Console.WriteLine($"{property.Name} : {property.GetValue(reflection)}");
             }
 
             #endregion
