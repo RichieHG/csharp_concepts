@@ -9,6 +9,9 @@ These are the concepts that we practice here:
 - Anonymous Type | [Notes](#anonymous-types)
 - Reflection | [Notes](#reflection)
 
+## Tech Stack
+* NET 6
+
 ## Virtual Override and Abstract modifiers
 ### [Virtual](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/virtual)
 This modifier allow us to override a method, property, indexer or event declaration in a derived class.
